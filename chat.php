@@ -49,7 +49,7 @@
 					for (var i = 0; i<lines.length - 1; i++){
 						var user = lines[i].slice(0, lines[i].indexOf(' '));
 						var msg = decodeURIComponent(lines[i].slice(lines[i].indexOf(' ')+1).replace(/[0-9a-f]{2}/g, '%$&'));
-						console.log(msg);
+						//console.log(msg);
 						$('#history').append('<li>'+user+': '+msg+'</li>');
 					}
 					pos = json.pos;
@@ -80,6 +80,7 @@
 				},
 				error: function(response){
 					alert(response.responseText);
+					sent = true;
 				}
 			});
 			
