@@ -11,7 +11,7 @@
 		$dict = array();
 
 	if ($_POST['type'] == 'login'){
-		if(array_key_exists($_POST['username'], $dict) && $_POST['password'] == $dict[$_POST['username']]) {
+		if(array_key_exists($_POST['username'], $dict) && password_verify($_POST['password'], $dict[$_POST['username']])) {
 			$_SESSION['valid'] = true;
 			$_SESSION['timeout'] = time();
 			$_SESSION['username'] = $_POST['username'];
@@ -30,7 +30,7 @@
 		if(!empty($output))
 			echo 'Username must consist of A-Z, a-z, 0-9, and _.';
 		else{
-			$dict[$_POST['username']] = $_POST['password'];
+			$dict[$_POST['username']] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 			echo 'Signed up!';
 		}
 	}
