@@ -25,9 +25,14 @@
 		echo 'Username cannot be empty';
 	else if(array_key_exists($_POST['username'], $dict))
 		echo 'Username has already existed';
-	else {
-		$dict[$_POST['username']] = $_POST['password'];
-		echo 'Signed up!';
+	else{
+		preg_match('/\W+/', $_POST['username'], $output);
+		if(!empty($output))
+			echo 'Username must consist of A-Z, a-z, 0-9, and _.';
+		else{
+			$dict[$_POST['username']] = $_POST['password'];
+			echo 'Signed up!';
+		}
 	}
 
 	file_put_contents('passwd', json_encode($dict))
