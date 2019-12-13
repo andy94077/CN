@@ -42,7 +42,7 @@
 			$.post('server.php', { from_user: "<?php echo $_SESSION['username']?>", to_user: "<?php echo $_POST['to_user'];?>", pos: pos},
 				function(response){
 					sent = true;
-					if(response === undefined)
+					if(response === undefined || response === '')
 						return;
 					var json = JSON.parse(response);
 					var lines = json.message.split("\n");
@@ -61,6 +61,8 @@
 		setInterval(get_msg, 1000);
 
 		function upload(file){
+			if(file === undefined)
+				return;
 			sent = false;
 			let form = new FormData();
 			form.append('from_user', "<?php echo $_SESSION['username']?>");
