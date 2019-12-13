@@ -7,9 +7,9 @@
 	if(!$_SESSION['valid'])
 		header('Location: index.php');
 	
-	if($_FILES['upfile']['size'] > 2e7){
+	if($_FILES['file']['size'] > 2e7){
 		http_response_code(413);
-		echo 'File size must be no more than 20MB';
+		echo 'File size must be no more than 20MB.';
 		return;
 	}
 	
