@@ -31,6 +31,5 @@
 		$data = fread($f, $tail - $_POST['pos']);
 		$json = array('pos' => $tail, 'message' => $data);
 		echo json_encode($json);
-		file_put_contents('log', $json);
 	}
 ?>
