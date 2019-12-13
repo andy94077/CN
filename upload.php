@@ -7,12 +7,17 @@
 	if(!$_SESSION['valid'])
 		header('Location: index.php');
 	
-	if($_FILES['file']['size'] > 2e7){
-		http_response_code(413);
-		echo 'File size must be no more than 20MB.';
+	if($_FILES['file']['error'] == UPLOAD_ERR_NO_FILE){
+		http_response_code(422);
+		echo 'The file does not exist.';
 		return;
 	}
-	
+	if(empty($_FILES['file']) || $_FILES['file']['error'] == UPLOAD_ERR_INI_SIZE || $_FILES['file']['error'] == UPLOAD_ERR_FORM_SIZE || $_FILES['file']['size'] > 5000000){
+		http_response_code(413);
+		echo 'File size must be no more than 5MB.';
+		return;
+	}
+
 	if(strcmp($_POST['from_user'], $_POST['to_user']) < 0){
 		$file_dir = 'upload_files/'.$_POST['from_user'].'_'.$_POST['to_user'];
 		$chat_file_path = 'chat/'.$_POST['from_user'].'_'.$_POST['to_user'];
