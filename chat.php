@@ -79,7 +79,7 @@
 					sent = true;
 				},
 				error: function(response){
-					alert(response);
+					alert(response.responseText);
 				}
 			});
 			
