@@ -12,9 +12,9 @@
 		echo 'The file does not exist.';
 		return;
 	}
-	if(empty($_FILES['file']) || $_FILES['file']['error'] == UPLOAD_ERR_INI_SIZE || $_FILES['file']['error'] == UPLOAD_ERR_FORM_SIZE || $_FILES['file']['size'] > 5000000){
+	if(empty($_FILES['file']) || $_FILES['file']['error'] == UPLOAD_ERR_INI_SIZE || $_FILES['file']['error'] == UPLOAD_ERR_FORM_SIZE || $_FILES['file']['size'] > 11000000){
 		http_response_code(413);
-		echo 'File size must be no more than 5MB.';
+		echo 'File size must be no more than 11 MB.';
 		return;
 	}
 
