@@ -6,7 +6,7 @@
 	//error_reporting(-1);	
 
 	if(file_exists('passwd'))
-		$dict = json_decode(file_get_contents('passwd', 'r'), true);
+		$dict = json_decode(file_get_contents('passwd'), true);
 	else
 		$dict = array();
 
