@@ -7,11 +7,18 @@
 	if(!$_SESSION['valid'])
 		header('Location: index.php');
 	
+	if(file_exists('passwd'))
+		$dict = json_decode(file_get_contents('passwd'), true);
+	else
+		$dict = array();
+
+	if ($_POST['from_user'] != $_SESSION['username'] || !array_key_exists($_POST['to_user'], $dict))
+		return;
 
 	if(strcmp($_POST['from_user'], $_POST['to_user']) < 0)
-		$chat_file_path = 'chat/'.$_POST['from_user'].'_'.$_POST['to_user'];
+		$chat_file_path = 'chat/'.$_POST['from_user'].'|'.$_POST['to_user'];
 	else
-		$chat_file_path = 'chat/'.$_POST['to_user'].'_'.$_POST['from_user'];
+		$chat_file_path = 'chat/'.$_POST['to_user'].'|'.$_POST['from_user'];
 
 
 	if (!file_exists($chat_file_path)){
