@@ -25,7 +25,7 @@
 					if(response === 'success\n'){
 						window.location = 'homepage.php';
 					}
-					else{
+					else if (response !== 'Signed up!'){
 						$('#response').text(response);
 						$('#username').val('');
 						$('#password').val('');
