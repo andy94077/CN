@@ -10,7 +10,7 @@
 	else
 		$dict = array();
 
-	if ($_POST['type'] == 'login'){
+	if ($_POST['type'] === 'login'){
 		if(array_key_exists($_POST['username'], $dict) && password_verify($_POST['password'], $dict[$_POST['username']])) {
 			$_SESSION['valid'] = true;
 			$_SESSION['timeout'] = time();

@@ -12,7 +12,7 @@
 	else
 		$dict = array();
 
-	if ($_POST['from_user'] != $_SESSION['username'] || !array_key_exists($_POST['to_user'], $dict))
+	if ($_POST['from_user'] !== $_SESSION['username'] || !array_key_exists($_POST['to_user'], $dict))
 		return;
 
 	if(strcmp($_POST['from_user'], $_POST['to_user']) < 0)
@@ -31,7 +31,7 @@
 	fseek($f, 0, SEEK_END);
 	$tail = ftell($f);
 	
-	if($tail == $_POST['pos'])
+	if($tail === $_POST['pos'])
 		http_response_code(304);
 	else{
 		fseek($f, $_POST['pos'], SEEK_SET);

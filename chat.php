@@ -90,6 +90,7 @@
 </head>
 
 <body>
+	<h2><?php echo 'Chat with '.$_POST['to_user']; ?></h2>
 	<button onclick="window.location.assign('homepage.php')">back</button>
 	<ul id='history'></ul>
 	<input type='text' name='message' id='message'>

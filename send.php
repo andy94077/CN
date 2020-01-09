@@ -12,7 +12,7 @@
 	else
 		$dict = array();
 
-	if ($_POST['from_user'] != $_SESSION['username'] || !array_key_exists($_POST['to_user'], $dict))
+	if ($_POST['from_user'] !== $_SESSION['username'] || !array_key_exists($_POST['to_user'], $dict))
 		return;
 
 	if(strcmp($_POST['from_user'], $_POST['to_user']) < 0)
