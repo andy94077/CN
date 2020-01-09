@@ -12,15 +12,15 @@
 	else
 		$dict = array();
 
-	if ($_POST['from_user'] != $_SESSION['username'] || !array_key_exists($_POST['to_user'], $dict))
+	if ($_POST['from_user'] !== $_SESSION['username'] || !array_key_exists($_POST['to_user'], $dict))
 		return;
 
-	if($_FILES['file']['error'] == UPLOAD_ERR_NO_FILE){
+	if($_FILES['file']['error'] === UPLOAD_ERR_NO_FILE){
 		http_response_code(422);
 		echo 'The file does not exist.';
 		return;
 	}
-	if(empty($_FILES['file']) || $_FILES['file']['error'] == UPLOAD_ERR_INI_SIZE || $_FILES['file']['error'] == UPLOAD_ERR_FORM_SIZE || $_FILES['file']['size'] > 11000000){
+	if(empty($_FILES['file']) || $_FILES['file']['error'] === UPLOAD_ERR_INI_SIZE || $_FILES['file']['error'] === UPLOAD_ERR_FORM_SIZE || $_FILES['file']['size'] > 11000000){
 		http_response_code(413);
 		echo 'File size must be no more than 11 MB.';
 		return;
