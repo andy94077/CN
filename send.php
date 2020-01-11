@@ -20,6 +20,6 @@
 	else
 		$chat_file_path = 'chat/'.$_POST['to_user'].'|'.$_POST['from_user'];
 
-	file_put_contents($chat_file_path, $_POST['from_user'].' '.bin2hex(str_replace(array('&', '<', '>'), array('&amp;', '&lt;', '&gt;'), $_POST['message']))."\n", FILE_APPEND);
+	file_put_contents($chat_file_path, $_POST['from_user'].' '.bin2hex(htmlspecialchars($_POST['message']))."\n", FILE_APPEND);
 	echo '';
 ?>
