@@ -30,7 +30,8 @@
 	$f = fopen($chat_file_path, 'rb');
 	fseek($f, 0, SEEK_END);
 	$tail = ftell($f);
-	
+
+	$_POST['pos'] = intval($_POST['pos']);
 	if($tail === $_POST['pos'])
 		http_response_code(304);
 	else{
