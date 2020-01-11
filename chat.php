@@ -60,30 +60,32 @@
 
 		setInterval(get_msg, 1000);
 
-		function upload(file){
-			if(file === undefined)
+		function upload(files){
+			if(files === undefined)
 				return;
+			console.log(files);
 			sent = false;
-			let form = new FormData();
-			form.append('from_user', "<?php echo $_SESSION['username']?>");
-			form.append('to_user', "<?php echo $_POST['to_user']?>");
-			form.append('file', file);
+			for (var i = 0; i< files.length; i++){
+				let form = new FormData();
+				form.append('from_user', "<?php echo $_SESSION['username']?>");
+				form.append('to_user', "<?php echo $_POST['to_user']?>");
+				form.append('file', files[i]);
 
-			$.ajax({
-				url:'upload.php',
-				type: 'POST',
-				contentType: false,
-				processData: false, 
-				data: form,
-				success: function(response){
-					sent = true;
-				},
-				error: function(response){
-					alert(response.responseText);
-					sent = true;
-				}
-			});
-			
+				$.ajax({
+					url:'upload.php',
+					type: 'POST',
+					contentType: false,
+					processData: false, 
+					data: form,
+					success: function(response){
+						sent = true;
+					},
+					error: function(response){
+						alert(response.responseText);
+						sent = true;
+					}
+				});
+			}
 		}
 
 	</script>
@@ -95,6 +97,6 @@
 	<ul id='history'></ul>
 	<input type='text' name='message' id='message'>
 	<button onclick="send()">send</button>
-	<input type='file' id='uploader' onchange="upload(this.files[0])"/>
+	<input type='file' id='uploader' onchange="upload(this.files)" multiple/>
 </body>
 </html>
