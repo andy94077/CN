@@ -34,6 +34,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<script>
+		function press_enter(event){
+			if (event.keyCode === 13) {
+				event.preventDefault();
+				$("#send").click();
+			}
+		}
 		var sent = true;
 		function send() {
 			sent = false;
@@ -106,8 +112,8 @@
 	<h2><?php echo 'Chat with '.$_POST['to_user']; ?></h2>
 	<button onclick="window.location.assign('homepage.php')">back</button>
 	<ul id='history'></ul>
-	<input type='text' name='message' id='message'>
-	<button onclick="send()">send</button>
+	<input type='text' name='message' id='message' onkeyup="press_enter(event)">
+	<button id='send' onclick="send()">send</button>
 	<input type='file' id='uploader' onchange="upload(this.files)" multiple/>
 </body>
 </html>
