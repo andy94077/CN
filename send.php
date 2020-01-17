@@ -19,14 +19,9 @@
 		$chat_file_path = 'chat/'.$_POST['from_user'].'|'.$_POST['to_user'];
 	else
 		$chat_file_path = 'chat/'.$_POST['to_user'].'|'.$_POST['from_user'];
-<<<<<<< HEAD
 
 	file_put_contents($chat_file_path, $_POST['from_user'].' '.bin2hex(htmlspecialchars($_POST['message']))."\n", FILE_APPEND);
 
 	file_put_contents('new_message/'.$_POST['to_user'].'/'.$_POST['from_user'], '');
-=======
-
-	file_put_contents($chat_file_path, $_POST['from_user'].' '.bin2hex(htmlspecialchars($_POST['message']))."\n", FILE_APPEND);
->>>>>>> 4314fe92e1f9a5dc39b6ca20c449fd3160b92e4b
 	echo '';
 ?>

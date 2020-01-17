@@ -5,14 +5,8 @@
 	ini_set('display_startup_errors', 1);
 	//error_reporting(-1);	
 
-<<<<<<< HEAD
-	if(file_exists('passwd')){
-		$dict = json_decode(file_get_contents('passwd'), true);
-	}
-=======
 	if(file_exists('passwd'))
 		$dict = json_decode(file_get_contents('passwd'), true);
->>>>>>> 4314fe92e1f9a5dc39b6ca20c449fd3160b92e4b
 	else
 		$dict = array();
 
@@ -38,11 +32,8 @@
 		else{
 			$dict[$_POST['username']] = password_hash($_POST['password'], PASSWORD_BCRYPT, ['cost' => 5]);//, array('time_cost' => 20));
 			file_put_contents('passwd', json_encode($dict));
-<<<<<<< HEAD
 			mkdir('new_message/'.$_POST['username']);
 			file_put_contents('friends/'.$_POST['username'], json_encode(array()));
-=======
->>>>>>> 4314fe92e1f9a5dc39b6ca20c449fd3160b92e4b
 			echo 'Signed up!';
 		}
 	}

@@ -66,7 +66,7 @@
 		<input type='text' name='to_user'>
 		<button type='submit'>chat</button>
 	</form>
-	<h3>Friends</h3>
+	<h3>Recent messages</h3>
 	<ul id='friends'></ul>
 </body>
 </html>
