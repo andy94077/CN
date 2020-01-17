@@ -14,10 +14,16 @@
 		$dict = array();
 	
 	$friend_arr = json_decode(file_get_contents('friends/'.$_SESSION['username']), true);
+
+	$new_message_arr = array_slice(scandir('new_message/'.$_SESSION['username']), 2);
+	$friend_arr = array_diff($friend_arr, $new_message_arr);
+
 	$friend = '';
-	foreach($friend_arr as $f){
+	$new_message = '';
+	foreach($friend_arr as $f)
 		$friend .= $f.' ';
-	}
+	foreach($new_message_arr as $f)
+		$new_message .= $f.' ';
 ?>
 
 <html>
@@ -30,13 +36,22 @@
 	<script>
 		$(document).ready(function() {
 			var friends = "<?php echo $friend;?>".slice(0, -1).split(" ");
-			if(friends[0] === ""){
+			var new_message = "<?php echo $new_message;?>".slice(0, -1).split(" ");
+			if(friends[0] === "" && new_message[0] === ""){
 				$('body').append("<p>You don't have any friends!</p>");
 			}
 			else{
-				for (var i in friends){
-					console.log(friends[i]);
-					$('#friends').append('<li>'+friends[i]+'</li>');
+				if(new_message[0] !== ""){
+					for (var i in new_message){
+						console.log(new_message[i]);
+						$('#friends').append('<li><b>'+new_message[i]+'</b></li>');
+					}
+				}
+				if(friends[0] !== ""){
+					for (var i in friends){
+						console.log(friends[i]);
+						$('#friends').append('<li>'+friends[i]+'</li>');
+					}
 				}
 			}
 		
