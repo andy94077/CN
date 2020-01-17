@@ -34,6 +34,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<script>
+		function form_submit(name){
+			$('#to_user').val(name);
+			$('#chat').submit();
+		}
+
 		$(document).ready(function() {
 			var friends = "<?php echo $friend;?>".slice(0, -1).split(" ");
 			var new_message = "<?php echo $new_message;?>".slice(0, -1).split(" ");
@@ -44,13 +49,13 @@
 				if(new_message[0] !== ""){
 					for (var i in new_message){
 						console.log(new_message[i]);
-						$('#friends').append('<li><b>'+new_message[i]+'</b></li>');
+						$('#friends').append('<li onclick="form_submit(\'' + new_message[i] + '\')"><b>'+new_message[i]+'</b></li>');
 					}
 				}
 				if(friends[0] !== ""){
 					for (var i in friends){
 						console.log(friends[i]);
-						$('#friends').append('<li>'+friends[i]+'</li>');
+						$('#friends').append('<li onclick="form_submit(\'' + friends[i] + '\')">'+friends[i]+'</li>');
 					}
 				}
 			}
@@ -61,9 +66,10 @@
 </head>
 <body>
 	<h2><?php echo $user;?></h2>
+	<button onclick="window.location.assign('index.php')">logout</button>
 	<p id='response' style="color:red"><?php echo $msg;?></p>
-	<form action='chat.php' method='POST'>
-		<input type='text' name='to_user'>
+	<form id='chat' action='chat.php' method='POST'>
+		<input type='text' name='to_user' value='' id='to_user'>
 		<button type='submit'>chat</button>
 	</form>
 	<h3>Recent messages</h3>
