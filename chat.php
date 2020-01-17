@@ -13,6 +13,17 @@
 	if(!array_key_exists($_POST['to_user'], $dict)){
 		$_SESSION['to_user_DNE'] = true;
 		header('Location: homepage.php');
+		return;
+	}
+
+	if(file_exists('friends/'.$_SESSION['username']))
+		$friend = json_decode(file_get_contents('friends/'.$_SESSION['username']), true);
+	else
+		$friend = array();
+	
+	if(!in_array($_POST['to_user'], $friend, true)){
+		array_push($friend, $_POST['to_user']);
+		file_put_contents('friends/'.$_SESSION['username'], json_encode($friend));
 	}
 ?>
 <html>

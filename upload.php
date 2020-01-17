@@ -43,6 +43,8 @@
 	move_uploaded_file($_FILES['file']['tmp_name'], $name);
 	chmod($name, 0644);
 	file_put_contents($chat_file_path, $_POST['from_user'].' '.bin2hex("<a href=.$filedir/$name download=".basename($_FILES['file']['name']).'>'.$_FILES['file']['name'].'</a>')."\n", FILE_APPEND);
+
+	file_put_contents('new_message/'.$_POST['to_user'].'/'.$_POST['from_user'], '');
 	echo '';
 ?>
 

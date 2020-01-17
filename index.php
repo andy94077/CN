@@ -25,11 +25,11 @@
 					if(response === 'success\n'){
 						window.location = 'homepage.php';
 					}
-					else if (response !== 'Signed up!'){
-						$('#response').text(response);
+					else if (response !== 'Signed up!\n'){
 						$('#username').val('');
 						$('#password').val('');
 					}
+					$('#response').text(response);
 				}
 			);
 		}

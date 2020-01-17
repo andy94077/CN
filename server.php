@@ -25,7 +25,9 @@
 		echo '';
 		return;
 	}
-	
+
+	if(file_exists('new_message/'.$_POST['from_user'].'/'.$_POST['to_user']))
+		unlink('new_message/'.$_POST['from_user'].'/'.$_POST['to_user']);
 
 	$f = fopen($chat_file_path, 'rb');
 	fseek($f, 0, SEEK_END);
